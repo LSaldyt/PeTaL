@@ -23,3 +23,8 @@ For instance, to set up an image classification workflow:
  "pipeline:blacklist" : [],
  "pipeline:whitelist" : ["CatalogueOfLife", "EOLImageModule", "TaxonClassifier"]}
 ```
+Once the `settings.json` file is configured like this, the mining server can be started by calling the `./run` script in `data_pipeline`, or by manually running `python pipeline.py`.
+When the server is started, it will first call `CatalogueOfLife`, which will generate `Taxon` objects within neo4j.
+As these `Taxon` objects fill the database (and local server cache), instances of `EOLImageModule` will be spun up to download images on each `Taxon` and add them to the database.
+In turn, as `Image`s come into the database, the server will train the `TaxonClassifier` on these images.
+Any other type-dependent pipeline will have a process similar to this one.
