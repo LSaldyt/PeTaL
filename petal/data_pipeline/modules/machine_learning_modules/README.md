@@ -4,7 +4,7 @@ PeTaL defines machine learning modules, which may fit into the entire framework 
 For instance, an image classifier will define an input type of "Image," which could come from, for instance, the `EOLImageModule`, 
 which pulls images from EOL pages for particular organisms.
 
-## Taxon Classifier Example
+## Taxon Classifier Overview
 
 For instance, PeTaL contains a `TaxonClassifier`, which does taxonomic classification based on images of organisms.
 Currently, this consists of a convolutional neural network built on top of "EfficientNet". 
@@ -28,3 +28,7 @@ When the server is started, it will first call `CatalogueOfLife`, which will gen
 As these `Taxon` objects fill the database (and local server cache), instances of `EOLImageModule` will be spun up to download images on each `Taxon` and add them to the database.
 In turn, as `Image`s come into the database, the server will train the `TaxonClassifier` on these images.
 Any other type-dependent pipeline will have a process similar to this one.
+
+## TaxonClassifier Detail
+
+For additional detail on the implementation of a framework machine learning module, see the `TaxonClassifier` file. For detail on mining modules, see the `README.md` in `data_pipeline`, and specifically the mining modules `CatalogueOfLife.py` and `WikipediaModule.py`, which are intentionally well documented.
